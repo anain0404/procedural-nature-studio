@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a17">
+  <title>Procedural Nature Studio</title>
+  <link rel="stylesheet" href="nature.css">
+  <script src="nature.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="identity"><span class="mark">✳</span><div><span class="eyebrow">GENERATIVE GRAPHICS LAB</span><h1>Procedural Nature <em>Studio</em></h1></div></div>
+      <div class="header-actions"><span class="live-indicator"><i></i> Interactive canvas</span><button id="export" class="primary">Export PNG ↗</button></div>
+    </header>
+    <div class="workspace">
+      <section class="scene" aria-label="Generated L-system canvas">
+        <div class="scene-top"><span id="scene-title">Forest canopy</span><span class="scene-note">Drag to pan · Scroll to zoom · Double-click to reset</span></div>
+        <canvas id="canvas" aria-label="Procedural L-system visualization"></canvas>
+        <div class="scene-bottom"><div class="metrics"><span><strong id="segment-count">0</strong> segments</span><span><strong id="symbol-count">0</strong> symbols</span><span><strong id="generation-count">0</strong> generations</span></div><button id="reset-view" class="subtle">Reset view</button></div>
+      </section>
+      <aside class="panel">
+        <div class="panel-head"><div><span class="eyebrow">MAKE SOMETHING ORGANIC</span><h2>Growth controls</h2></div><button id="randomize" class="subtle">New seed ↻</button></div>
+        <div class="group"><label for="preset">Starting pattern</label><select id="preset"><option value="canopy">Forest canopy</option><option value="willow">Weeping willow</option><option value="coral">Coral branches</option><option value="fern">Fern frond</option><option value="snowflake">Koch snowflake</option><option value="dragon">Dragon curve</option></select><div class="hint">Select a pattern, then change its rules to make it your own.</div></div>
+        <div class="group dual"><div><label for="iterations">Generations <output id="iterations-out">5</output></label><input id="iterations" type="range" min="0" max="8" step="1" value="5"></div><div><label for="angle">Turn angle <output id="angle-out">23°</output></label><input id="angle" type="range" min="0" max="120" value="23"></div></div>
+        <div class="group dual"><div><label for="jitter">Angle variation <output id="jitter-out">8°</output></label><input id="jitter" type="range" min="0" max="35" value="8"></div><div><label for="length">Step length <output id="length-out">10</output></label><input id="length" type="range" min="3" max="24" value="10"></div></div>
+        <div class="group"><div class="group-heading"><label for="axiom">Grammar editor</label><span class="hint">L-system</span></div><label class="small" for="axiom">Axiom</label><input type="text" id="axiom" spellcheck="false" value="F"><label class="small" for="rules">Production rules (one per line)</label><textarea id="rules" rows="4" spellcheck="false">F = FF-[-F+F+F]+[+F-F-F]</textarea><div class="grammar-help">F draws · f moves · + / − turns · [ / ] branches · other letters can be rewritten</div></div>
+        <div class="group"><div class="group-heading"><label>Palette</label><span class="hint">Pick a mood</span></div><div class="palette-row" id="palettes"><button type="button" class="palette active" data-palette="sage" aria-label="Sage palette" title="Sage"><i style="background:#a4d7a3"></i><i style="background:#426e5b"></i><i style="background:#efe9d2"></i></button><button type="button" class="palette" data-palette="autumn" aria-label="Autumn palette" title="Autumn"><i style="background:#edc273"></i><i style="background:#b55e43"></i><i style="background:#302d2b"></i></button><button type="button" class="palette" data-palette="blossom" aria-label="Blossom palette" title="Blossom"><i style="background:#f5b5cc"></i><i style="background:#e6b1ce"></i><i style="background:#3f3448"></i></button><button type="button" class="palette" data-palette="ocean" aria-label="Ocean palette" title="Ocean"><i style="background:#73dacf"></i><i style="background:#3975a5"></i><i style="background:#102b45"></i></button></div></div>
+        <div class="group dual"><label class="toggle-line" for="color-depth"><input id="color-depth" type="checkbox" checked><span>Depth gradient</span></label><label class="toggle-line" for="show-grid"><input id="show-grid" type="checkbox"><span>Guide grid</span></label></div>
+        <div class="group"><label for="seed">Random seed</label><div class="seed-row"><input id="seed" type="number" min="1" max="999999999" value="31415"><button id="regenerate" class="primary">Generate ↗</button></div></div>
+        <p class="message" id="message" role="status">Edit any setting to grow a new variation.</p>
+      </aside>
+    </div>
+    <footer><span>Procedural Nature Studio · L-systems & generative geometry</span><span>Made for exploration, one rule at a time.</span></footer>
+  </main>
+</body>
+</html>
